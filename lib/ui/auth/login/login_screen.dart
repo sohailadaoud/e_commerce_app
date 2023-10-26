@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/ui/auth/register/register_screen.dart';
 import 'package:e_commerce_app/utils/my_colors.dart';
 import 'package:e_commerce_app/utils/text_field_item.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   return 'please enter your email';
                                 }
                                 bool emailValid = RegExp(
-                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(value);
                                 if (!emailValid) {
                                   return 'please enter valid email';
@@ -112,6 +113,52 @@ class _LoginScreenState extends State<LoginScreen> {
                               .titleMedium!
                               .copyWith(color: AppColors.whiteColor),
                           textAlign: TextAlign.end),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 35.h),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              Navigator.pushReplacementNamed(
+                                  context, RegisterScreen.routeName);
+                            }
+                          },
+                          child: Text(
+                            'LogIn',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(color: AppColors.primaryColor),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.whiteColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(80)))),
+                    ),
+                    Row(
+                      //mainAxisAlignment: MainAxisAlignment.center,
+                      //crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                        ),
+                        Text(
+                          'Do not have an account?',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(color: AppColors.whiteColor),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            //navigate to registerscreen
+                            Navigator.of(context)
+                                .pushNamed(RegisterScreen.routeName);
+                          },
+                          child: Text('Create Account',
+                              style: TextStyle(fontSize: 16)),
+                        )
+                      ],
                     )
                   ],
                 ),
