@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/utils/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldItem extends StatelessWidget {
   String fieldName;
@@ -27,11 +28,14 @@ class TextFieldItem extends StatelessWidget {
       children: [
         Text(
           fieldName,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .copyWith(color: AppColors.whiteColor),
           textAlign: TextAlign.start,
         ),
         Padding(
-            padding: EdgeInsets.only(top: 24, bottom: 20),
+            padding: EdgeInsets.only(top: 24.h, bottom: 20.h),
             child: TextFormField(
                 validator: validator,
                 controller: controller,
@@ -41,12 +45,12 @@ class TextFieldItem extends StatelessWidget {
                     fillColor: AppColors.whiteColor,
                     filled: true,
                     enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(15.r),
                     ),
                     focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15)),
+                        borderRadius: BorderRadius.circular(15.r)),
                     errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15)),
+                        borderRadius: BorderRadius.circular(15.r)),
                     hintText: hintText,
                     hintStyle: Theme.of(context)
                         .textTheme
