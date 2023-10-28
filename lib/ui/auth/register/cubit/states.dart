@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/data/model/response/RegisterResponse.dart';
+
 abstract class RegisterStates {}
 
 class RegisterLoadingState extends RegisterStates {
@@ -14,4 +16,8 @@ class RegisterErrorState extends RegisterStates {
   RegisterErrorState({required this.ErrorMessage});
 }
 
-class RegisterSuccessState extends RegisterStates {}
+class RegisterSuccessState extends RegisterStates {
+  RegisterResponse response;
+
+  RegisterSuccessState({required this.response});
+}

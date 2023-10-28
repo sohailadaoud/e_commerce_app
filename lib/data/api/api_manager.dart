@@ -9,8 +9,8 @@ class ApiManager {
   /*
   https://ecommerce.routemisr.com/api/v1/auth/signup
    */
-  Future<RegisterResponse> register(String name, String email, String password,
-      String rePassword, String phone) async {
+  static Future<RegisterResponse> register(String name, String email,
+      String password, String rePassword, String phone) async {
     Uri url = Uri.https(ApiConstant.baseUrl, ApiConstant.registerUrl);
     var requestBody = RegisterRequest(
       name: name,

@@ -9,12 +9,14 @@ class RegisterResponse {
     this.message,
     this.user,
     this.error,
+    this.statusMsg,
     this.token,
   });
 
   RegisterResponse.fromJson(dynamic json) {
     message = json['message'];
     error = json['errors'];
+    statusMsg = json['statusMsg'];
 
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     token = json['token'];
@@ -24,11 +26,13 @@ class RegisterResponse {
   User? user;
   String? token;
   Error? error;
+  String? statusMsg;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['message'] = message;
     map['errors'] = error;
+    map['statusMsg'] = statusMsg;
 
     if (user != null) {
       map['user'] = user?.toJson();
