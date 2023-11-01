@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/data/repository/auth_repository/repository/auth_repositpory_impl.dart';
 import 'package:e_commerce_app/ui/auth/login/login_screen.dart';
 import 'package:e_commerce_app/ui/auth/register/cubit/register_screen_view_model.dart';
 import 'package:e_commerce_app/ui/auth/register/cubit/states.dart';
@@ -17,7 +18,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
 
-  var viewModel = RegisterScreenViewModel();
+  var viewModel =
+      RegisterScreenViewModel(repositoryContract: injectionAuthRepository());
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     return 'please enter your email';
                                   }
                                   bool emailValid = RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                       .hasMatch(value);
                                   if (!emailValid) {
                                     return 'please enter valid email';

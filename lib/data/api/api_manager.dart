@@ -6,11 +6,20 @@ import 'package:e_commerce_app/data/model/response/RegisterResponse.dart';
 import 'package:http/http.dart' as http;
 
 class ApiManager {
+  ApiManager._();
+
+  static ApiManager? _instance;
+
+  static ApiManager getInstance() {
+    _instance ??= ApiManager._();
+    return _instance!;
+  }
+
   /*
   https://ecommerce.routemisr.com/api/v1/auth/signup
    */
-  static Future<RegisterResponse> register(String name, String email,
-      String password, String rePassword, String phone) async {
+  Future<RegisterResponse> register(String name, String email, String password,
+      String rePassword, String phone) async {
     Uri url = Uri.https(ApiConstant.baseUrl, ApiConstant.registerUrl);
     var requestBody = RegisterRequest(
       name: name,

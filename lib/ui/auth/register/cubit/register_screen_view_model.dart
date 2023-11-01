@@ -1,10 +1,13 @@
-import 'package:e_commerce_app/data/api/api_manager.dart';
+import 'package:e_commerce_app/data/repository/auth_repository/auth_repository_contract.dart';
 import 'package:e_commerce_app/ui/auth/register/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterScreenViewModel extends Cubit<RegisterStates> {
-  RegisterScreenViewModel() : super(RegisterInitialState());
+  AuthRepositoryContract repositoryContract;
+
+  RegisterScreenViewModel({required this.repositoryContract})
+      : super(RegisterInitialState());
   var emailController = TextEditingController(text: 'sohaila@route.com');
   var nameController = TextEditingController(text: 'sohaila');
   var phoneNumberController = TextEditingController(text: '01283100880');
@@ -17,7 +20,7 @@ class RegisterScreenViewModel extends Cubit<RegisterStates> {
     if (formKey.currentState!.validate()) {
       emit(RegisterLoadingState(LoadingMessage: 'Loading....'));
       try {
-        var response = await ApiManager.register(
+        var response = await repositoryContract.register(
             nameController.text,
             emailController.text,
             passwordController.text,
