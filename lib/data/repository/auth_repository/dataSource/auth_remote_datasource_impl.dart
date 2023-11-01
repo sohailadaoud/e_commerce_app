@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/data/api/api_manager.dart';
 import 'package:e_commerce_app/data/model/response/RegisterResponse.dart';
-import 'package:e_commerce_app/data/repository/auth_repository/auth_remote_datasource.dart';
+import 'package:e_commerce_app/domain/repository/auth_repository/dataSource/auth_remote_datasource.dart';
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   ApiManager apiManager;

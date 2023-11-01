@@ -1,12 +1,12 @@
-import 'package:e_commerce_app/data/repository/auth_repository/auth_repository_contract.dart';
+import 'package:e_commerce_app/domain/useCase/register_use_case.dart';
 import 'package:e_commerce_app/ui/auth/register/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterScreenViewModel extends Cubit<RegisterStates> {
-  AuthRepositoryContract repositoryContract;
+  RegisterUseCase registerUseCase;
 
-  RegisterScreenViewModel({required this.repositoryContract})
+  RegisterScreenViewModel({required this.registerUseCase})
       : super(RegisterInitialState());
   var emailController = TextEditingController(text: 'sohaila@route.com');
   var nameController = TextEditingController(text: 'sohaila');
@@ -20,7 +20,7 @@ class RegisterScreenViewModel extends Cubit<RegisterStates> {
     if (formKey.currentState!.validate()) {
       emit(RegisterLoadingState(LoadingMessage: 'Loading....'));
       try {
-        var response = await repositoryContract.register(
+        var response = await registerUseCase.invoke(
             nameController.text,
             emailController.text,
             passwordController.text,
