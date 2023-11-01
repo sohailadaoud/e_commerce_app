@@ -12,8 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  var emailController = TextEditingController(text: 'sohaila@route.com');
+  var passwordController = TextEditingController(text: '123456789');
   var formKey = GlobalKey<FormState>();
   bool isObscure = true;
 
