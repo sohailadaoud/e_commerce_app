@@ -1,4 +1,6 @@
-import 'User.dart';
+import 'package:e_commerce_app/domain/entities/AuthResultEntity.dart';
+
+import 'UserDto.dart';
 
 /// message : "success"
 /// user : {"name":"Ahmed Abd Al-Muti","email":"ahmedmutti123456@gmail.com","role":"user"}
@@ -17,13 +19,12 @@ class RegisterResponse {
     message = json['message'];
     error = json['errors'];
     statusMsg = json['statusMsg'];
-
-    user = json['user'] != null ? User.fromJson(json['user']) : null;
+    user = json['user'] != null ? UserDto.fromJson(json['user']) : null;
     token = json['token'];
   }
 
   String? message;
-  User? user;
+  UserDto? user;
   String? token;
   Error? error;
   String? statusMsg;
@@ -39,5 +40,12 @@ class RegisterResponse {
     }
     map['token'] = token;
     return map;
+  }
+
+  AuthResultEntity toAuthRegisterEntity() {
+    return AuthResultEntity(
+      token: token,
+      userEntity: user?.toUserEntity(),
+    );
   }
 }

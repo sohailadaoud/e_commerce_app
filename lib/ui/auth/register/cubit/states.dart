@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/data/model/response/RegisterResponse.dart';
+import 'package:e_commerce_app/domain/entities/AuthResultEntity.dart';
 
 abstract class RegisterStates {}
 
@@ -17,7 +17,7 @@ class RegisterErrorState extends RegisterStates {
 }
 
 class RegisterSuccessState extends RegisterStates {
-  RegisterResponse response;
+  AuthResultEntity response;
 
   RegisterSuccessState({required this.response});
 }
