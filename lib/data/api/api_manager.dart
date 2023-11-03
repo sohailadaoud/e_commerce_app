@@ -43,7 +43,7 @@ class ApiManager {
         return Left(BaseError(
             errorMessage: registerResponse.error != null
                 ? registerResponse.error!.msg
-                : registerResponse.error));
+                : registerResponse.message));
       }
     } else {
       return Left(BaseError(errorMessage: 'please check your internet'));
