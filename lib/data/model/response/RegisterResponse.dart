@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/data/model/response/Error.dart';
 import 'package:e_commerce_app/domain/entities/AuthResultEntity.dart';
 
 import 'UserDto.dart';
@@ -17,7 +18,7 @@ class RegisterResponse {
 
   RegisterResponse.fromJson(dynamic json) {
     message = json['message'];
-    error = json['errors'];
+    error = json['errors'] != null ? Error.fromJson(json['errors']) : null;
     statusMsg = json['statusMsg'];
     user = json['user'] != null ? UserDto.fromJson(json['user']) : null;
     token = json['token'];
