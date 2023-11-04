@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/data/model/response/UserDto.dart';
+import 'package:e_commerce_app/domain/entities/AuthResultEntity.dart';
 
 /// message : "success"
 /// user : {"name":"Ahmed Abd Al-Muti","email":"ahmedmutti12@gmail.com","role":"user"}
@@ -34,5 +35,9 @@ class LoginResponse {
     }
     map['token'] = token;
     return map;
+  }
+
+  AuthResultEntity toAuthResultEntity() {
+    return AuthResultEntity(userEntity: user?.toUserEntity(), token: token);
   }
 }

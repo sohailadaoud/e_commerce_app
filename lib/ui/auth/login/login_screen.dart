@@ -1,6 +1,8 @@
+import 'package:e_commerce_app/domain/useCase/login_use_case.dart';
 import 'package:e_commerce_app/ui/auth/login/cubit/login_screen_view_model.dart';
 import 'package:e_commerce_app/ui/auth/login/cubit/login_states.dart';
 import 'package:e_commerce_app/ui/auth/register/register_screen.dart';
+import 'package:e_commerce_app/utils/dialog_utlis.dart';
 import 'package:e_commerce_app/utils/my_colors.dart';
 import 'package:e_commerce_app/utils/text_field_item.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  LoginScreenViewModel viewModel = LoginScreenViewModel();
+  LoginScreenViewModel viewModel =
+      LoginScreenViewModel(loginUseCase: injectLoginUseCase());
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,16 @@ class _LoginScreenState extends State<LoginScreen> {
       bloc: viewModel,
       listener: (context, state) {
         if (state is LoginLoadingState) {
+          DialogUtlis.showLoading(context, state.loadingMessage ?? 'waiting');
         } else if (state is LoginErrorState) {
-        } else if (state is LoginSuccessState) {}
+          DialogUtlis.hideLoading(context);
+          DialogUtlis.showMessage(context, state.errorMessage!,
+              posActionName: 'ok', title: 'error');
+        } else if (state is LoginSuccessState) {
+          DialogUtlis.hideLoading(context);
+          DialogUtlis.showMessage(context, state.response.token!,
+              posActionName: 'ok', title: 'success');
+        }
       },
       child: Scaffold(
         body: Container(
@@ -72,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     return 'please enter your email';
                                   }
                                   bool emailValid = RegExp(
-                                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                       .hasMatch(value);
                                   if (!emailValid) {
                                     return 'please enter valid email';

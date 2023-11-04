@@ -17,6 +17,12 @@ class AuthRepositoryImpl implements AuthRepositoryContract {
     return authRemoteDataSource.register(
         name, email, password, rePassword, phone);
   }
+
+  @override
+  Future<Either<BaseError, AuthResultEntity>> login(
+      String email, String password) {
+    return authRemoteDataSource.login(email, password);
+  }
 }
 
 AuthRepositoryContract injectionAuthRepository() {
