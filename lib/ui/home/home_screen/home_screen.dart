@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/ui/home/home_screen/cubit/home_screen_states.dart';
 import 'package:e_commerce_app/ui/home/home_screen/cubit/home_screen_view_model.dart';
-import 'package:e_commerce_app/ui/home/home_screen/widget/custom_navigation_bar.dart';
+import 'package:e_commerce_app/ui/home/widget/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
