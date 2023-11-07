@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/ui/home/widget/AnnouncementSection.dart';
 import 'package:e_commerce_app/ui/home/widget/custom_search_shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +20,10 @@ class HomeTab extends StatelessWidget {
             height: 10.h,
           ),
           const CustomSearchAndShoppingCart(),
+          SizedBox(
+            height: 10.h,
+          ),
+          AnnouncementsSection(),
         ],
       ),
     );
