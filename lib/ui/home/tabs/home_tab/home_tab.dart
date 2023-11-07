@@ -24,6 +24,9 @@ class HomeTab extends StatelessWidget {
             height: 10.h,
           ),
           AnnouncementsSection(),
+          SizedBox(
+            height: 10.h,
+          ),
         ],
       ),
     );
