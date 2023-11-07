@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/ui/home/widget/AnnouncementSection.dart';
+import 'package:e_commerce_app/ui/home/widget/category_row_widget.dart';
 import 'package:e_commerce_app/ui/home/widget/custom_search_shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,6 +28,7 @@ class HomeTab extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
+          CategoryRowWidget(textTitle: 'Categories'),
         ],
       ),
     );
