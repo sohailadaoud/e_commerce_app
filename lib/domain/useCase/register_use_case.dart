@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:e_commerce_app/data/repository/repository/auth_repositpory_impl.dart';
 import 'package:e_commerce_app/domain/entities/AuthResultEntity.dart';
 import 'package:e_commerce_app/domain/repository/repository/auth_repository_contract.dart';
 
@@ -20,8 +19,4 @@ class RegisterUseCase {
       return Right(response);
     });
   }
-}
-
-RegisterUseCase injectRegisterUseCase() {
-  return RegisterUseCase(authRepositoryContract: injectionAuthRepository());
 }

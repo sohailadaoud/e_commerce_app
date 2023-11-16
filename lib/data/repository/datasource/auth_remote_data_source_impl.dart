@@ -33,6 +33,3 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 }
 
-AuthRemoteDataSource injectAuthRemoteDataSource() {
-  return AuthRemoteDataSourceImpl(apiManager: ApiManager.getInstance());
-}

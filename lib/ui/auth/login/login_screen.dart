@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/domain/useCase/login_use_case.dart';
+import 'package:e_commerce_app/domain/di.dart';
 import 'package:e_commerce_app/ui/auth/login/cubit/login_screen_view_model.dart';
 import 'package:e_commerce_app/ui/auth/login/cubit/login_states.dart';
 import 'package:e_commerce_app/ui/auth/register/register_screen.dart';

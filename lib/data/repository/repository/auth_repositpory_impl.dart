@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/data/api/failures.dart';
-import 'package:e_commerce_app/data/repository/datasource/auth_remote_data_source_impl.dart';
 import 'package:e_commerce_app/domain/repository/dataSource/auth_remote_data_source.dart';
 import 'package:e_commerce_app/domain/repository/repository/auth_repository_contract.dart';
 
@@ -23,8 +22,4 @@ class AuthRepositoryImpl implements AuthRepositoryContract {
       String email, String password) {
     return authRemoteDataSource.login(email, password);
   }
-}
-
-AuthRepositoryContract injectionAuthRepository() {
-  return AuthRepositoryImpl(authRemoteDataSource: injectAuthRemoteDataSource());
 }
