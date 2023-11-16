@@ -10,7 +10,12 @@ class HomeRepositoryImpl implements HomeRepositoryContract {
   HomeRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failures, CategoryResponseEntity>> getAllCategories() {
+  Future<Either<Failures, CategoryOrBrandResponseEntity>> getAllCategories() {
     return remoteDataSource.getAllCategories();
+  }
+
+  @override
+  Future<Either<Failures, CategoryOrBrandResponseEntity>> getAllBrands() {
+    return remoteDataSource.getAllBrands();
   }
 }

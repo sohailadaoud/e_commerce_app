@@ -9,6 +9,7 @@ import 'repository/dataSource/auth_remote_data_source.dart';
 import 'repository/dataSource/home_remote_data_source.dart';
 import 'repository/repository/auth_repository_contract.dart';
 import 'repository/repository/home_repository_contract.dart';
+import 'useCase/get_all_brands_use_case.dart';
 import 'useCase/get_all_category_use_case.dart';
 import 'useCase/login_use_case.dart';
 
@@ -39,4 +40,9 @@ GetAllCategoryUseCase injectGetAllCategoryUseCase() {
 
 HomeRemoteDataSource injectHomeRemoteDataSource() {
   return HomeRemoteDataSourceImpl(apiManager: ApiManager.getInstance());
+}
+
+GetAllBrandsUseCase injectGetAllBrandsUseCase() {
+  return GetAllBrandsUseCase(
+      repositoryContract: injectHomeRepositoryContract());
 }

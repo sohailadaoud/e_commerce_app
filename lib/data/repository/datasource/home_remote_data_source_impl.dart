@@ -10,7 +10,18 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.apiManager});
 
   @override
-  Future<Either<Failures, CategoryResponseEntity>> getAllCategories() async {
+  Future<Either<Failures, CategoryOrBrandResponseEntity>>
+      getAllCategories() async {
+    var either = await apiManager.getCategories();
+    return either.fold((error) {
+      return Left(Failures(errorMessage: error.errorMessage));
+    }, (response) {
+      return Right(response);
+    });
+  }
+
+  @override
+  Future<Either<Failures, CategoryOrBrandResponseEntity>> getAllBrands() async {
     var either = await apiManager.getCategories();
     return either.fold((error) {
       return Left(Failures(errorMessage: error.errorMessage));

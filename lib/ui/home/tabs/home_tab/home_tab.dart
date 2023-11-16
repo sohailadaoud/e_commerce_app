@@ -3,21 +3,24 @@ import 'package:e_commerce_app/ui/home/tabs/home_tab/cubit/home_tab_states.dart'
 import 'package:e_commerce_app/ui/home/tabs/home_tab/cubit/home_tab_view_model.dart';
 import 'package:e_commerce_app/ui/home/widget/AnnouncementSection.dart';
 import 'package:e_commerce_app/ui/home/widget/categories_or_brand_section.dart';
-import 'package:e_commerce_app/ui/home/widget/category_row_widget.dart';
 import 'package:e_commerce_app/ui/home/widget/custom_search_shopping_cart.dart';
+import 'package:e_commerce_app/ui/home/widget/row_widget.dart';
 import 'package:e_commerce_app/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatelessWidget {
-  HomeTabViewModel viewModel =
-      HomeTabViewModel(getAllCategoryUseCase: injectGetAllCategoryUseCase());
+  HomeTabViewModel viewModel = HomeTabViewModel(
+      getAllCategoryUseCase: injectGetAllCategoryUseCase(),
+      getAllBrandsUseCase: injectGetAllBrandsUseCase());
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeTabViewModel, HomeTabStates>(
-        bloc: viewModel..getCategories(),
+        bloc: viewModel
+          ..getCategories()
+          ..getBrands(),
         builder: (context, state) => viewModel.categoriesList.isEmpty
             ? Center(
                 child: CircularProgressIndicator(),
@@ -46,8 +49,8 @@ class HomeTab extends StatelessWidget {
                         SizedBox(
                           height: 10.h,
                         ),
-                        CategoryRowWidget(textTitle: 'Categories'),
-                        state is HomeTabLoadingState
+                        RowWidget(textTitle: 'Categories'),
+                        state is HomeTabCategoryLoadingState
                             ? const Center(
                                 child: CircularProgressIndicator(
                                   color: AppColors.primaryColor,
@@ -56,7 +59,22 @@ class HomeTab extends StatelessWidget {
                             : CategoriesOrBrandsSection(
                                 list: viewModel.categoriesList),
                         SizedBox(
+                          height: 20.h,
+                        ),
+                        RowWidget(textTitle: 'Brands'),
+                        SizedBox(
                           height: 24.h,
+                        ),
+                        state is HomeTabBrandLoadingState
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.primaryColor,
+                                ),
+                              )
+                            : CategoriesOrBrandsSection(
+                                list: viewModel.brandsList),
+                        SizedBox(
+                          height: 20.h,
                         ),
                       ],
                     ),
@@ -87,7 +105,7 @@ class HomeTab extends StatelessWidget {
               SizedBox(
                 height: 10.h,
               ),
-              CategoryRowWidget(textTitle: 'Categories'),
+              RowWidget(textTitle: 'Categories'),
             ],
           ),
         ),

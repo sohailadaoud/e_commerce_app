@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesOrBrandsSection extends StatelessWidget {
-  List<CategoryEntity> list;
+  List<CategoryOrBrandEntity> list;
 
   CategoriesOrBrandsSection({required this.list});
 
@@ -17,7 +17,7 @@ class CategoriesOrBrandsSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return CategoryOrBrandItem(
-              model: list[index],
+              categoryEntity: list[index],
             );
           },
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

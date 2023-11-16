@@ -5,7 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/data/api/api_constants.dart';
 import 'package:e_commerce_app/data/api/failures.dart';
 import 'package:e_commerce_app/data/model/request/RegisterRequest.dart';
-import 'package:e_commerce_app/data/model/response/CategoryResponseDto.dart';
+import 'package:e_commerce_app/data/model/response/CategoryOrBrandResponseDto.dart';
 import 'package:e_commerce_app/data/model/response/LoginResponse.dart';
 import 'package:e_commerce_app/data/model/response/RegisterResponse.dart';
 import 'package:http/http.dart' as http;
@@ -79,7 +79,7 @@ class ApiManager {
     }
   }
 
-  Future<Either<Failures, CategoryResponseDto>> getCategories() async {
+  Future<Either<Failures, CategoryOrBrandResponseDto>> getCategories() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
@@ -89,12 +89,34 @@ class ApiManager {
         url,
       );
       var categoryResponse =
-          CategoryResponseDto.fromJson(jsonDecode(response.body));
+          CategoryOrBrandResponseDto.fromJson(jsonDecode(response.body));
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return Right(categoryResponse);
       } else {
         return Left(ServerError(errorMessage: categoryResponse.message));
+      }
+    } else {
+      return Left(NetworkError(errorMessage: 'please check your internet'));
+    }
+  }
+
+  Future<Either<Failures, CategoryOrBrandResponseDto>> getBrands() async {
+    final connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      // I am connected to a mobile network.
+      Uri url = Uri.https(ApiConstant.baseUrl, ApiConstant.getAllBrandsUrl);
+      var response = await http.get(
+        url,
+      );
+      var brandResponse =
+          CategoryOrBrandResponseDto.fromJson(jsonDecode(response.body));
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return Right(brandResponse);
+      } else {
+        return Left(ServerError(errorMessage: brandResponse.message));
       }
     } else {
       return Left(NetworkError(errorMessage: 'please check your internet'));

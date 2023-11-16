@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryOrBrandItem extends StatelessWidget {
-  CategoryEntity model;
+  CategoryOrBrandEntity categoryEntity;
 
-  CategoryOrBrandItem({required this.model});
+  CategoryOrBrandItem({required this.categoryEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class CategoryOrBrandItem extends StatelessWidget {
         Expanded(
           flex: 8,
           child: CircleAvatar(
-            backgroundImage: NetworkImage(model.image ?? ''),
+            backgroundImage: NetworkImage(categoryEntity.image ?? ''),
             radius: 50.r,
           ),
         ),
@@ -25,7 +25,7 @@ class CategoryOrBrandItem extends StatelessWidget {
         Expanded(
           flex: 2,
           child: Text(
-            model.name ?? "",
+            categoryEntity.name ?? "",
             textWidthBasis: TextWidthBasis.longestLine,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium!.copyWith(

@@ -4,22 +4,42 @@ abstract class HomeTabStates {}
 
 class HomeTabInitialState extends HomeTabStates {}
 
-class HomeTabLoadingState extends HomeTabStates {
+class HomeTabCategoryLoadingState extends HomeTabStates {
   String loadingMessage;
 
-  HomeTabLoadingState({required this.loadingMessage});
+  HomeTabCategoryLoadingState({required this.loadingMessage});
 }
 
-class HomeTabErrorState extends HomeTabStates {
+class HomeTabCategoryErrorState extends HomeTabStates {
   String errorMessage;
 
-  HomeTabErrorState({required this.errorMessage});
+  HomeTabCategoryErrorState({required this.errorMessage});
 }
 
-class HomeTabSuccessState extends HomeTabStates {
+class HomeTabCategorySuccessState extends HomeTabStates {
   //response or category list
 
-  CategoryResponseEntity responseEntity;
+  CategoryOrBrandResponseEntity responseEntity;
 
-  HomeTabSuccessState({required this.responseEntity});
+  HomeTabCategorySuccessState({required this.responseEntity});
+}
+
+class HomeTabBrandLoadingState extends HomeTabStates {
+  String loadingMessage;
+
+  HomeTabBrandLoadingState({required this.loadingMessage});
+}
+
+class HomeTabBrandErrorState extends HomeTabStates {
+  String errorMessage;
+
+  HomeTabBrandErrorState({required this.errorMessage});
+}
+
+class HomeTabBrandSuccessState extends HomeTabStates {
+  //response or category list
+
+  CategoryOrBrandResponseEntity responseEntity;
+
+  HomeTabBrandSuccessState({required this.responseEntity});
 }

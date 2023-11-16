@@ -2,10 +2,10 @@ import 'package:e_commerce_app/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CategoryRowWidget extends StatelessWidget {
+class RowWidget extends StatelessWidget {
   String textTitle;
 
-  CategoryRowWidget({required this.textTitle});
+  RowWidget({required this.textTitle});
 
   @override
   Widget build(BuildContext context) {
