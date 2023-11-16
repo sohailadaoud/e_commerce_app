@@ -17,7 +17,7 @@ class CategoriesOrBrandsSection extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return CategoryOrBrandItem(
-              categoryEntity: list[index],
+              model: list[index],
             );
           },
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

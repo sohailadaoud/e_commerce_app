@@ -28,7 +28,7 @@ class HomeTabViewModel extends Cubit<HomeTabStates> {
 
   void getBrands() async {
     emit(HomeTabBrandLoadingState(loadingMessage: 'Loading...'));
-    var either = await getAllCategoryUseCase.invoke();
+    var either = await getAllBrandsUseCase.invoke();
     either.fold((l) {
       emit(HomeTabBrandErrorState(errorMessage: l.errorMessage!));
     }, (response) {
