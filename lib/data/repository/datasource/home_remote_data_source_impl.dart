@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:e_commerce_app/data/api/api_manager.dart';
 import 'package:e_commerce_app/data/api/failures.dart';
 import 'package:e_commerce_app/domain/entities/CategoryEntity.dart';
+import 'package:e_commerce_app/domain/entities/ProductResponseEntity.dart';
 import 'package:e_commerce_app/domain/repository/dataSource/home_remote_data_source.dart';
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -28,5 +29,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     }, (response) {
       return Right(response);
     });
+  }
+
+  @override
+  Future<Either<Failures, ProductResponseEntity>> getAllProducts() {
+    // TODO: implement getAllProducts
+    throw UnimplementedError();
   }
 }
