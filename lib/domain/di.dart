@@ -11,6 +11,7 @@ import 'repository/repository/auth_repository_contract.dart';
 import 'repository/repository/home_repository_contract.dart';
 import 'useCase/get_all_brands_use_case.dart';
 import 'useCase/get_all_category_use_case.dart';
+import 'useCase/get_all_product_use_case.dart';
 import 'useCase/login_use_case.dart';
 
 AuthRemoteDataSource injectAuthRemoteDataSource() {
@@ -44,5 +45,10 @@ HomeRemoteDataSource injectHomeRemoteDataSource() {
 
 GetAllBrandsUseCase injectGetAllBrandsUseCase() {
   return GetAllBrandsUseCase(
+      repositoryContract: injectHomeRepositoryContract());
+}
+
+GetAllProductsUseCase injectGetAllProductsUseCase() {
+  return GetAllProductsUseCase(
       repositoryContract: injectHomeRepositoryContract());
 }
